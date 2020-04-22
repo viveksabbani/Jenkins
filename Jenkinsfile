@@ -6,7 +6,7 @@ pipeline {
          steps {
             powershell("""
                     new-item buildText.txt
-                    Add-Content buildText.txt $(cat myTextFile.txt)
+                    Add-Content buildText.txt \$(cat myTextFile.txt)
             """) 
          }
       }
@@ -14,9 +14,9 @@ pipeline {
           steps{
               powershell("""
                     if(Test-Path ./version.txt  -PathType leaf){
-                        Rename-Item -Path buildText.txt -NewName "buildText_v$(cat version.txt).txt"
-                        $version= $(cat version.txt)
-                        Set-Content -Path version.txt -Value "$($version+1)"
+                        Rename-Item -Path buildText.txt -NewName "buildText_v\$(cat version.txt).txt"
+                        \$version= \$(cat version.txt)
+                        Set-Content -Path version.txt -Value "\$($version+1)"
                     }else{
                         New-Item version.txt
                         Add-Content version.txt "1"
