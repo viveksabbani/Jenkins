@@ -16,7 +16,7 @@ pipeline {
                     if(Test-Path ./version.txt  -PathType leaf){
                         Rename-Item -Path buildText.txt -NewName "buildText_v\$(cat version.txt).txt"
                         \$version= \$(cat version.txt)
-                        Set-Content -Path version.txt -Value "\$($version+1)"
+                        Set-Content -Path version.txt -Value "\$(\$version+1)"
                     }else{
                         New-Item version.txt
                         Add-Content version.txt "1"
